@@ -4,6 +4,6 @@ module pl.michalsnella.mathlearning {
 
     requires org.controlsfx.controls;
 
-    opens pl.michalsnella.mathlearning to javafx.fxml;
+    opens pl.michalsnella.mathlearning.controller to javafx.fxml;
     exports pl.michalsnella.mathlearning;
 }

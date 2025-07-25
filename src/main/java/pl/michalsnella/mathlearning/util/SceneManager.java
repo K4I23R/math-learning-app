@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class SceneManager {
     private static Stage stage;
@@ -15,7 +16,7 @@ public class SceneManager {
     }
 
     public static void switchTo(String fxml) throws IOException {
-        Parent root = FXMLLoader.load(SceneManager.class.getResource(fxml));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(SceneManager.class.getResource(fxml)));
         stage.setScene(new Scene(root));
         stage.show();
     }

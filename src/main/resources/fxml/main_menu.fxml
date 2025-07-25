@@ -5,14 +5,23 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.MainMenu">
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pl.michalsnella.mathlearning.controller.MainMenuController">
+
    <children>
+
       <VBox layoutX="250.0" layoutY="83.0" prefHeight="200.0" prefWidth="100.0">
+
          <children>
-            <Button mnemonicParsing="false" text="Start" />
-            <Button mnemonicParsing="false" text="Settings" />
-            <Button mnemonicParsing="false" text="Exit" />
+            <Button fx:id="startButton" text="Start" onAction="#onStartClicked"/>
+            <Button fx:id="settingsButton" text="Settings" onAction="#onSettingsClicked" />
+            <Button fx:id="exitButton" text="Exit" onAction="#onExitClicked"/>
          </children>
+
       </VBox>
+
    </children>
+
 </AnchorPane>
