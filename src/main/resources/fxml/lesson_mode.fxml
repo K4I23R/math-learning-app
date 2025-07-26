@@ -8,15 +8,13 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="pl.michalsnella.mathlearning.controller.StartController"
+            fx:controller="pl.michalsnella.mathlearning.controller.LessonsController"
             prefHeight="400.0" prefWidth="600.0">
 
     <VBox prefHeight="200.0" prefWidth="100.0">
         <children>
 
-            <Label fx:id="titleLabel" text="Start" />
-            <Button fx:id="lessonsButton" onAction="#onLessonsClicked" text="Lessons" />
-            <Button fx:id="challengesButton" onAction="#onChallengesClicked" text="Challenges" />
+            <Label fx:id="titleLabel" text="Już wkrótce" />
             <Button fx:id="backButton" onAction="#onBackClicked" text="Back" />
         </children>
     </VBox>

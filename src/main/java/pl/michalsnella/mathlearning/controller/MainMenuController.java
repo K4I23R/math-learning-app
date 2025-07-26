@@ -25,7 +25,7 @@ public class MainMenuController {
     @FXML
     public void onStartClicked(ActionEvent actionEvent) {
         try {
-            SceneManager.switchTo("/fxml/settings.fxml");
+            SceneManager.switchTo("/fxml/start.fxml");
         } catch (Exception e) {
             e.printStackTrace();
         }
