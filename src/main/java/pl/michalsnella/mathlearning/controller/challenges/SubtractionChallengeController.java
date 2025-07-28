@@ -3,46 +3,43 @@ package pl.michalsnella.mathlearning.controller.challenges;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import pl.michalsnella.mathlearning.component.DigitField;
-import pl.michalsnella.mathlearning.config.Settings;
-import pl.michalsnella.mathlearning.model.AdditionExercise;
-import pl.michalsnella.mathlearning.util.LanguageManager;
+import pl.michalsnella.mathlearning.model.SubtractionExercise;
 import pl.michalsnella.mathlearning.util.SceneManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdditionChallengeController {
+public class SubtractionChallengeController {
 
     @FXML private Label titleLabel;
     @FXML private Button newOperationButton, checkButton, backButton;
     @FXML private HBox regroupingDigitContainer, topDigitsBox, bottomDigitsBox, digitContainer;
 
-    private AdditionExercise currentExercise;
+    private SubtractionExercise currentExercise;
     private final List<DigitField> digitFields = new ArrayList<>();
     private final List<DigitField> regroupingDigitFields = new ArrayList<>();
+    private final List<Label> topDigitLabels = new ArrayList<>();
 
     @FXML
     public void initialize() {
-        titleLabel.setText(LanguageManager.getString("addition_challenge.title"));
-        newOperationButton.setText(LanguageManager.getString("addition_challenge.new_operation"));
-        checkButton.setText(LanguageManager.getString("addition_challenge.check"));
-        backButton.setText(LanguageManager.getString("addition_challenge.back"));
+        titleLabel.setText("Odejmowanie");
+        newOperationButton.setText("Nowe działanie");
+        checkButton.setText("Sprawdź");
+        backButton.setText("Wróć");
         generateNewExercise();
     }
 
     private void generateNewExercise() {
-//        int difficulty = Settings.getInstance().getDifficulty();
-//        currentExercise = new AdditionExercise(difficulty);
+        currentExercise = new SubtractionExercise(3);
 
-        currentExercise = new AdditionExercise(4);
-
-        String resultStr = currentExercise.getResultAsString();
-        int maxLength = resultStr.length();
+        int maxLength = String.valueOf(currentExercise.getResult()).length();
 
         regroupingDigitFields.clear();
         digitFields.clear();
+        topDigitLabels.clear();
 
         regroupingDigitContainer.getChildren().clear();
         topDigitsBox.getChildren().clear();
@@ -61,7 +58,10 @@ public class AdditionChallengeController {
             Label topDigit = new Label(String.valueOf(topStr.charAt(i)));
             topDigit.setMinWidth(30);
             topDigit.setStyle("-fx-font-size: 16px;");
+            int finalI = i;
+            topDigit.setOnMouseClicked(e -> onBorrowClicked(finalI));
             topDigitsBox.getChildren().add(topDigit);
+            topDigitLabels.add(topDigit);
 
             Label bottomDigit = new Label(String.valueOf(bottomStr.charAt(i)));
             bottomDigit.setMinWidth(30);
@@ -72,6 +72,26 @@ public class AdditionChallengeController {
             resultField.setPrefWidth(30);
             digitFields.add(resultField);
             digitContainer.getChildren().add(resultField);
+        }
+    }
+
+    private void onBorrowClicked(int index) {
+        for (int i = index - 1; i >= 0; i--) {
+            Label label = topDigitLabels.get(i);
+            String text = label.getText().trim();
+            if (!text.isEmpty()) {
+                int val = Integer.parseInt(text);
+                if (val > 0) {
+                    label.setText(String.valueOf(val - 1));
+                    label.setStyle("-fx-background-color: yellow; -fx-font-size: 16px;");
+
+                    Label target = topDigitLabels.get(index);
+                    int newVal = Integer.parseInt(target.getText().trim()) + 10;
+                    target.setText(String.valueOf(newVal));
+                    target.setStyle("-fx-background-color: lightblue; -fx-font-size: 16px;");
+                    break;
+                }
+            }
         }
     }
 

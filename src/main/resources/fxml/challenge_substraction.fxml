@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="pl.michalsnella.mathlearning.controller.challenges.AdditionChallengeController">
-
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pl.michalsnella.mathlearning.controller.challenges.SubtractionChallengeController"
+            prefWidth="600" prefHeight="400">
     <VBox layoutX="50" layoutY="30" spacing="10" alignment="CENTER">
-
-        <Label fx:id="titleLabel" text="Dodawanie" style="-fx-font-size: 18px;" />
-
+        <Label fx:id="titleLabel" text="Odejmowanie" style="-fx-font-size: 18px;" />
         <HBox fx:id="regroupingDigitContainer" spacing="5" alignment="CENTER"/>
         <HBox fx:id="topDigitsBox" spacing="5" alignment="CENTER"/>
         <HBox spacing="5" alignment="CENTER">
-            <Label text="+" />
+            <Label text="-" />
             <HBox fx:id="bottomDigitsBox" spacing="5" alignment="CENTER"/>
         </HBox>
         <HBox fx:id="digitContainer" spacing="5" alignment="CENTER"/>
-
         <HBox spacing="10" alignment="CENTER">
             <Button fx:id="newOperationButton" onAction="#onNewClicked" text="Nowe działanie" />
             <Button fx:id="checkButton" onAction="#onCheckClicked" text="Sprawdź" />
