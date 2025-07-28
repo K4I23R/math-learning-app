@@ -6,5 +6,6 @@ module pl.michalsnella.mathlearning {
 
     opens pl.michalsnella.mathlearning.controller to javafx.fxml;
     opens pl.michalsnella.mathlearning.controller.challenges to javafx.fxml;
+
     exports pl.michalsnella.mathlearning;
 }

@@ -10,7 +10,7 @@ import pl.michalsnella.mathlearning.util.SceneManager;
 public class ChallengeModeController {
 
     @FXML
-    public Button additionChallengeButton, substractionChallengeButton, backButton;
+    public Button additionChallengeButton, subtractionChallengeButton, backButton;
 
     @FXML
     private Label titleLabel;
@@ -18,7 +18,7 @@ public class ChallengeModeController {
     @FXML
     public void initialize() {
         additionChallengeButton.setText(LanguageManager.getString("challenges.addition"));
-        substractionChallengeButton.setText(LanguageManager.getString("challenges.substraction"));
+        subtractionChallengeButton.setText(LanguageManager.getString("challenges.subtraction"));
         backButton.setText(LanguageManager.getString("challenges.back"));
 
         titleLabel.setText(LanguageManager.getString("challenges.title"));
@@ -32,9 +32,9 @@ public class ChallengeModeController {
         }
     }
 
-    public void onSubstractionClicked(ActionEvent actionEvent) {
+    public void onSubtractionClicked(ActionEvent actionEvent) {
         try {
-            SceneManager.switchTo("/fxml/challenge_substraction.fxml");
+            SceneManager.switchTo("/fxml/challenge_subtraction.fxml");
         } catch (Exception e) {
             e.printStackTrace();
         }

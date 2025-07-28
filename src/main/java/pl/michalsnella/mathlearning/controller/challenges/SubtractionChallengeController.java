@@ -3,18 +3,17 @@ package pl.michalsnella.mathlearning.controller.challenges;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import pl.michalsnella.mathlearning.component.DigitField;
 import pl.michalsnella.mathlearning.model.SubtractionExercise;
+import pl.michalsnella.mathlearning.util.LanguageManager;
 import pl.michalsnella.mathlearning.util.SceneManager;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class SubtractionChallengeController {
 
-    @FXML private Label titleLabel;
+    @FXML private Label titleLabel, messageLabel;
     @FXML private Button newOperationButton, checkButton, backButton;
     @FXML private HBox regroupingDigitContainer, topDigitsBox, bottomDigitsBox, digitContainer;
 
@@ -22,15 +21,20 @@ public class SubtractionChallengeController {
     private final List<DigitField> digitFields = new ArrayList<>();
     private final List<DigitField> regroupingDigitFields = new ArrayList<>();
     private final List<Label> topDigitLabels = new ArrayList<>();
+    private final List<Label> bottomDigitLabels = new ArrayList<>();
+
+    private final Set<Integer> borrowedIndices = new HashSet<>();
+
 
     @FXML
     public void initialize() {
-        titleLabel.setText("Odejmowanie");
-        newOperationButton.setText("Nowe działanie");
-        checkButton.setText("Sprawdź");
-        backButton.setText("Wróć");
+        titleLabel.setText(LanguageManager.getString("subtraction_challenge.title"));
+        newOperationButton.setText(LanguageManager.getString("subtraction_challenge.new_operation"));
+        checkButton.setText(LanguageManager.getString("subtraction_challenge.check"));
+        backButton.setText(LanguageManager.getString("subtraction_challenge.back"));
         generateNewExercise();
     }
+
 
     private void generateNewExercise() {
         currentExercise = new SubtractionExercise(3);
@@ -40,6 +44,8 @@ public class SubtractionChallengeController {
         regroupingDigitFields.clear();
         digitFields.clear();
         topDigitLabels.clear();
+        bottomDigitLabels.clear();
+        borrowedIndices.clear();
 
         regroupingDigitContainer.getChildren().clear();
         topDigitsBox.getChildren().clear();
@@ -67,6 +73,7 @@ public class SubtractionChallengeController {
             bottomDigit.setMinWidth(30);
             bottomDigit.setStyle("-fx-font-size: 16px;");
             bottomDigitsBox.getChildren().add(bottomDigit);
+            bottomDigitLabels.add(bottomDigit);
 
             DigitField resultField = new DigitField();
             resultField.setPrefWidth(30);
@@ -75,30 +82,90 @@ public class SubtractionChallengeController {
         }
     }
 
-    private void onBorrowClicked(int index) {
-        for (int i = index - 1; i >= 0; i--) {
-            Label label = topDigitLabels.get(i);
-            String text = label.getText().trim();
-            if (!text.isEmpty()) {
-                int val = Integer.parseInt(text);
-                if (val > 0) {
-                    label.setText(String.valueOf(val - 1));
-                    label.setStyle("-fx-background-color: yellow; -fx-font-size: 16px;");
 
-                    Label target = topDigitLabels.get(index);
-                    int newVal = Integer.parseInt(target.getText().trim()) + 10;
-                    target.setText(String.valueOf(newVal));
-                    target.setStyle("-fx-background-color: lightblue; -fx-font-size: 16px;");
-                    break;
-                }
+    private void onBorrowClicked(int index) {
+        messageLabel.setText("");
+
+        if (index <= 0 || index >= topDigitLabels.size()) return;
+
+        Label to = topDigitLabels.get(index);
+        Label from = topDigitLabels.get(index - 1);
+        Label bottomAtIndex = bottomDigitLabels.get(index);
+
+        int toVal = parseLabel(to);
+        int fromVal = parseLabel(from);
+        int bottomVal = parseLabel(bottomAtIndex);
+
+        if (borrowedIndices.contains(index - 1)) {
+            if (toVal - 10 < 0) {
+                showMessage(LanguageManager.getString("subtraction_challenge.message1"));
+                return;
             }
+            to.setText(String.valueOf(toVal - 10));
+            to.setStyle("-fx-font-size: 16px;");
+            from.setText(String.valueOf(fromVal + 1));
+            from.setStyle("-fx-font-size: 16px;");
+            borrowedIndices.remove(index - 1);
+            return;
+        }
+
+        if (toVal >= bottomVal) {
+            showMessage(LanguageManager.getString("subtraction_challenge.message2"));
+            return;
+        }
+
+        int bottomUnderFrom = bottomDigitValue(index - 1);
+
+        if (fromVal > 0) {
+            boolean isLeading = isLeadingDigit(index - 1);
+
+            if (fromVal > bottomUnderFrom || (fromVal == bottomUnderFrom && !isLeading)) {
+                from.setText(String.valueOf(fromVal - 1));
+                from.setStyle("-fx-background-color: yellow; -fx-font-size: 16px;");
+                to.setText(String.valueOf(toVal + 10));
+                to.setStyle("-fx-background-color: lightblue; -fx-font-size: 16px;");
+                borrowedIndices.add(index - 1);
+            } else {
+                showMessage(LanguageManager.getString("subtraction_challenge.message3"));
+            }
+        } else {
+            showMessage(LanguageManager.getString("subtraction_challenge.message3"));
         }
     }
+
+
+    private boolean isLeadingDigit(int index) {
+        for (int i = 0; i < bottomDigitLabels.size(); i++) {
+            String text = bottomDigitLabels.get(i).getText().trim();
+            if (!text.isEmpty() && !text.equals("0")) {
+                return i == index;
+            }
+        }
+        return false;
+    }
+
+
+    private int bottomDigitValue(int index) {
+        if (index < 0 || index >= bottomDigitLabels.size()) return -1;
+        return parseLabel(bottomDigitLabels.get(index));
+    }
+
+
+    private int parseLabel(Label label) {
+        try {
+            String text = label.getText().trim();
+            return text.isEmpty() ? 0 : Integer.parseInt(text);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
 
     @FXML
     private void onNewClicked() {
         generateNewExercise();
     }
+
 
     @FXML
     private void onCheckClicked() {
@@ -118,6 +185,18 @@ public class SubtractionChallengeController {
             }
         }
     }
+
+
+    private void showMessage(String message) {
+        messageLabel.setText(message);
+        new Thread(() -> {
+            try {
+                Thread.sleep(3000);
+                javafx.application.Platform.runLater(() -> messageLabel.setText(""));
+            } catch (InterruptedException ignored) {}
+        }).start();
+    }
+
 
     @FXML
     private void onBackClicked() {

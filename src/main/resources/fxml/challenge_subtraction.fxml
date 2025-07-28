@@ -13,7 +13,11 @@
             <Label text="-" />
             <HBox fx:id="bottomDigitsBox" spacing="5" alignment="CENTER"/>
         </HBox>
+
         <HBox fx:id="digitContainer" spacing="5" alignment="CENTER"/>
+
+        <Label fx:id="messageLabel" text="" style="-fx-text-fill: red; -fx-font-size: 14px;" />
+
         <HBox spacing="10" alignment="CENTER">
             <Button fx:id="newOperationButton" onAction="#onNewClicked" text="Nowe działanie" />
             <Button fx:id="checkButton" onAction="#onCheckClicked" text="Sprawdź" />
