@@ -10,7 +10,7 @@ import pl.michalsnella.mathlearning.util.SceneManager;
 public class ChallengeModeController {
 
     @FXML
-    public Button additionChallengeButton, subtractionChallengeButton, backButton;
+    public Button additionChallengeButton, subtractionChallengeButton, multiplicationChallengeButton, divisionChallengeButton, backButton;
 
     @FXML
     private Label titleLabel;
@@ -19,6 +19,8 @@ public class ChallengeModeController {
     public void initialize() {
         additionChallengeButton.setText(LanguageManager.getString("challenges.addition"));
         subtractionChallengeButton.setText(LanguageManager.getString("challenges.subtraction"));
+        multiplicationChallengeButton.setText(LanguageManager.getString("challenges.multiplication"));
+        divisionChallengeButton.setText(LanguageManager.getString("challenges.division"));
         backButton.setText(LanguageManager.getString("challenges.back"));
 
         titleLabel.setText(LanguageManager.getString("challenges.title"));
@@ -40,6 +42,17 @@ public class ChallengeModeController {
         }
     }
 
+    public void onMultiplicationClicked(ActionEvent actionEvent) {
+        try {
+            SceneManager.switchTo("/fxml/challenge_multiplication.fxml");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onDivisionClicked(ActionEvent actionEvent) {
+    }
+
     public void onBackClicked(ActionEvent actionEvent) {
         try {
             SceneManager.switchTo("/fxml/start.fxml");
@@ -47,6 +60,4 @@ public class ChallengeModeController {
             e.printStackTrace();
         }
     }
-
-
 }

@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="fxml.ChallengeMultiplication"
-            prefHeight="400.0" prefWidth="600.0">
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="pl.michalsnella.mathlearning.controller.challenges.MultiplicationChallengeController"
+      alignment="TOP_CENTER" spacing="10" style="-fx-padding: 20;">
 
-</AnchorPane>
+    <Label fx:id="titleLabel" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+    <HBox spacing="5" fx:id="topDigitsBox" alignment="CENTER"/>
+    <HBox spacing="5" fx:id="bottomDigitsBox" alignment="CENTER"/>
+
+    <VBox spacing="5" fx:id="resultsContainer" alignment="CENTER"/>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="newOperationButton" onAction="#onNewClicked" text="Nowe działanie"/>
+        <Button fx:id="checkButton" onAction="#onCheckClicked" text="Sprawdź"/>
+        <Button fx:id="backButton" onAction="#onBackClicked" text="Wróć"/>
+    </HBox>
+</VBox>
