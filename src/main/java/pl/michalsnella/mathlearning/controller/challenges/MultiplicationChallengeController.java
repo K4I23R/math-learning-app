@@ -25,6 +25,7 @@ public class MultiplicationChallengeController {
     private final List<DigitField> finalSumFields = new ArrayList<>();
 
     private MultiplicationExercise currentExercise;
+    private int currentStep = 0;
 
     @FXML
     public void initialize() {
@@ -49,7 +50,7 @@ public class MultiplicationChallengeController {
         partialResultsFields.clear();
         finalSumFields.clear();
 
-        // Top
+        // Top digits
         String topStr = String.format("%" + maxLength + "s", currentExercise.getTopNumber());
         for (char c : topStr.toCharArray()) {
             Label digit = new Label(String.valueOf(c));
@@ -58,7 +59,7 @@ public class MultiplicationChallengeController {
             topDigitsBox.getChildren().add(digit);
         }
 
-        // Bottom
+        // Bottom digits
         String bottomStr = String.format("%" + maxLength + "s", currentExercise.getBottomNumber());
         for (char c : bottomStr.toCharArray()) {
             Label digit = new Label(String.valueOf(c));
@@ -67,7 +68,7 @@ public class MultiplicationChallengeController {
             bottomDigitsBox.getChildren().add(digit);
         }
 
-        // Rough
+        // Rough note row
         HBox roughRow = new HBox();
         for (int i = 0; i < maxLength; i++) {
             DigitField field = new DigitField();
@@ -77,8 +78,8 @@ public class MultiplicationChallengeController {
         }
         resultsContainer.getChildren().add(roughRow);
 
-        // Partial
-        for (int i = bottomLength - 1; i >= 0; i--) {
+        // Partial result rows
+        for (int i = 0; i < currentExercise.getPartialResults().size(); i++) {
             HBox partialRow = new HBox();
             List<DigitField> rowFields = new ArrayList<>();
             for (int j = 0; j < maxLength; j++) {
@@ -87,11 +88,11 @@ public class MultiplicationChallengeController {
                 rowFields.add(field);
                 partialRow.getChildren().add(field);
             }
-            partialResultsFields.add(0, rowFields); // Reverse order: top to bottom
+            partialResultsFields.add(rowFields);
             resultsContainer.getChildren().add(partialRow);
         }
 
-        // Final
+        // Final sum row
         HBox finalRow = new HBox();
         for (int i = 0; i < maxLength; i++) {
             DigitField field = new DigitField();
@@ -100,12 +101,51 @@ public class MultiplicationChallengeController {
             finalRow.getChildren().add(field);
         }
         resultsContainer.getChildren().add(finalRow);
+
+        // Aktywuj tryb krokowy
+        currentStep = 0;
+        updateStepMode();
     }
 
     @FXML
     private void onCheckClicked() {
-        checkFinalResult();
-        checkPartialResults();
+        if (currentStep < partialResultsFields.size()) {
+            checkPartialResultsStep();
+        } else {
+            checkFinalResult();
+        }
+    }
+
+    private void checkPartialResultsStep() {
+        List<String> expectedPartials = currentExercise.getPartialResults();
+        int maxLength = finalSumFields.size();
+
+        if (currentStep >= expectedPartials.size()) return;
+
+        String expected = String.format("%" + maxLength + "s", expectedPartials.get(currentStep));
+        List<DigitField> userRow = partialResultsFields.get(currentStep);
+
+        boolean correct = true;
+
+        for (int col = 0; col < userRow.size(); col++) {
+            DigitField field = userRow.get(col);
+            String userVal = field.getText().strip();
+            char expectedChar = expected.charAt(col);
+
+            if (userVal.isEmpty() && expectedChar == ' ') {
+                field.setStyle("-fx-background-color: #b2ffb2;");
+            } else if (!userVal.isEmpty() && userVal.charAt(0) == expectedChar) {
+                field.setStyle("-fx-background-color: #b2ffb2;");
+            } else {
+                field.setStyle("-fx-background-color: #ffb2b2;");
+                correct = false;
+            }
+        }
+
+        if (correct) {
+            currentStep++;
+            updateStepMode();
+        }
     }
 
     private void checkFinalResult() {
@@ -125,31 +165,22 @@ public class MultiplicationChallengeController {
         }
     }
 
-    private void checkPartialResults() {
-        List<String> expectedPartials = currentExercise.getPartialResults();
-        int maxLength = finalSumFields.size(); // czyli max długość wierszy
-
-        for (int row = 0; row < expectedPartials.size(); row++) {
-            String expected = String.format("%" + maxLength + "s", expectedPartials.get(row)); // wyrównaj do prawej
-            List<DigitField> userRow = partialResultsFields.get(row);
-
-            for (int col = 0; col < userRow.size(); col++) {
-                DigitField field = userRow.get(col);
-                String userVal = field.getText().strip();
-                char expectedChar = expected.charAt(col);
-
-                if (userVal.isEmpty() && expectedChar == ' ') {
-                    // Poprawna pusta komórka
-                    field.setStyle("-fx-background-color: #b2ffb2;");
-                } else if (!userVal.isEmpty() && userVal.charAt(0) == expectedChar) {
-                    field.setStyle("-fx-background-color: #b2ffb2;");
-                } else {
-                    field.setStyle("-fx-background-color: #ffb2b2;");
-                }
+    private void updateStepMode() {
+        for (int i = 0; i < partialResultsFields.size(); i++) {
+            boolean editable = i == currentStep;
+            for (DigitField field : partialResultsFields.get(i)) {
+                field.setEditable(editable);
+                field.setDisable(!editable);
             }
         }
-    }
 
+        // Final result row aktywowany dopiero na końcu
+        boolean enableFinal = currentStep >= partialResultsFields.size();
+        for (DigitField field : finalSumFields) {
+            field.setEditable(enableFinal);
+            field.setDisable(!enableFinal);
+        }
+    }
 
     @FXML
     private void onNewClicked() {
