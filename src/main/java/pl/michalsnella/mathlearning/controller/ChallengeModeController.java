@@ -55,6 +55,11 @@ public class ChallengeModeController {
 
 
     public void onDivisionClicked(ActionEvent actionEvent) {
+        try {
+            SceneManager.switchTo("/fxml/challenge_division.fxml");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

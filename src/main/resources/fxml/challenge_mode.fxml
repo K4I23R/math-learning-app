@@ -17,8 +17,8 @@
             <Label fx:id="titleLabel" text="Już wkrótce" />
             <Button fx:id="additionChallengeButton" onAction="#onAdditionClicked" text="Dodawanie" />
             <Button fx:id="subtractionChallengeButton" onAction="#onSubtractionClicked" text="Odejmowanie" />
-            <Button fx:id="multiplicationChallengeButton" onAction="#onMultiplicationClicked" text="Dodawanie" />
-            <Button fx:id="divisionChallengeButton" onAction="#onDivisionClicked" text="Odejmowanie" />
+            <Button fx:id="multiplicationChallengeButton" onAction="#onMultiplicationClicked" text="Mnożenie" />
+            <Button fx:id="divisionChallengeButton" onAction="#onDivisionClicked" text="Dzielenie" />
             <Button fx:id="backButton" onAction="#onBackClicked" text="Back" />
 
         </children>
