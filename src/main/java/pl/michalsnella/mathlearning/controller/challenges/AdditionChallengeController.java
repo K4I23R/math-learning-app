@@ -32,6 +32,7 @@ public class AdditionChallengeController {
         generateNewExercise();
     }
 
+
     private void generateNewExercise() {
 //        int difficulty = Settings.getInstance().getDifficulty();
 //        currentExercise = new AdditionExercise(difficulty);
@@ -75,10 +76,12 @@ public class AdditionChallengeController {
         }
     }
 
+
     @FXML
     private void onNewClicked() {
         generateNewExercise();
     }
+
 
     @FXML
     private void onCheckClicked() {
@@ -98,6 +101,7 @@ public class AdditionChallengeController {
             }
         }
     }
+
 
     @FXML
     private void onBackClicked() {

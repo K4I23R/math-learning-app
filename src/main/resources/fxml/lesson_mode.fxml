@@ -16,6 +16,7 @@
 
             <Label fx:id="titleLabel" text="Już wkrótce" />
             <Button fx:id="backButton" onAction="#onBackClicked" text="Back" />
+
         </children>
     </VBox>
 

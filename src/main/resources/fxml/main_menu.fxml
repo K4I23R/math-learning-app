@@ -15,9 +15,11 @@
       <VBox layoutX="250.0" layoutY="83.0" prefHeight="200.0" prefWidth="100.0">
 
          <children>
+
             <Button fx:id="startButton" text="Start" onAction="#onStartClicked"/>
             <Button fx:id="settingsButton" text="Settings" onAction="#onSettingsClicked" />
             <Button fx:id="exitButton" text="Exit" onAction="#onExitClicked"/>
+
          </children>
 
       </VBox>

@@ -68,8 +68,6 @@ public class MultiplicationExercise {
             partials.add(padded);
         }
 
-        Collections.reverse(partials);
-
         return partials;
     }
 
@@ -78,13 +76,16 @@ public class MultiplicationExercise {
         return topNumber;
     }
 
+
     public int getBottomNumber() {
         return bottomNumber;
     }
 
+
     public int getResult() {
         return result;
     }
+
 
     public String getResultAsString() {
         return String.valueOf(result);

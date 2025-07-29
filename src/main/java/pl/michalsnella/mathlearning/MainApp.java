@@ -10,8 +10,6 @@ import java.io.IOException;
 
 public class MainApp extends Application {
 
-
-
     @Override
     public void start(Stage primaryStage) throws IOException {
 
@@ -20,6 +18,7 @@ public class MainApp extends Application {
         SceneManager.switchTo("/fxml/main_menu.fxml");
 
     }
+
 
     public static void main(String[] args) {
         launch(args);

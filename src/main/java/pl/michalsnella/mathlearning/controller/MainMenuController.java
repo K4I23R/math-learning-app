@@ -22,6 +22,7 @@ public class MainMenuController {
         exitButton.setText(LanguageManager.getString("menu.exit"));
     }
 
+
     @FXML
     public void onStartClicked(ActionEvent actionEvent) {
         try {
@@ -31,6 +32,7 @@ public class MainMenuController {
         }
     }
 
+
     @FXML
     private void onSettingsClicked() {
         try {
@@ -39,6 +41,7 @@ public class MainMenuController {
             e.printStackTrace();
         }
     }
+
 
     @FXML
     public void onExitClicked(ActionEvent actionEvent) {

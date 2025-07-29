@@ -35,6 +35,7 @@ public class SettingsController {
         }
     }
 
+
     @FXML
     public void onLanguageClicked(ActionEvent actionEvent) {
         try {

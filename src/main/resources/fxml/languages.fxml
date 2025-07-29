@@ -16,9 +16,7 @@
            <children>
 
                <Button fx:id="backButton" onAction="#onBackClicked" text="Back"/>
-
                <Button fx:id="polishButton" onAction="#onPolishClicked" text="Polski" />
-
                <Button fx:id="englishButton" onAction="#onEnglishClicked" text="English" />
 
            </children>

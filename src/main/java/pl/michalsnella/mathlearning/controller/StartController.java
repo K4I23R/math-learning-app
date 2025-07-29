@@ -37,6 +37,7 @@ public class StartController {
         }
     }
 
+
     public void onChallengesClicked(ActionEvent actionEvent) {
         try {
             SceneManager.switchTo("/fxml/challenge_mode.fxml");
@@ -44,6 +45,7 @@ public class StartController {
             e.printStackTrace();
         }
     }
+
 
     public void onBackClicked(ActionEvent actionEvent) {
         try {

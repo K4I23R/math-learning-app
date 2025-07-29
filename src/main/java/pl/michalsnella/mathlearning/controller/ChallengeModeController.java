@@ -26,6 +26,7 @@ public class ChallengeModeController {
         titleLabel.setText(LanguageManager.getString("challenges.title"));
     }
 
+
     public void onAdditionClicked(ActionEvent actionEvent) {
         try {
             SceneManager.switchTo("/fxml/challenge_addition.fxml");
@@ -33,6 +34,7 @@ public class ChallengeModeController {
             e.printStackTrace();
         }
     }
+
 
     public void onSubtractionClicked(ActionEvent actionEvent) {
         try {
@@ -42,6 +44,7 @@ public class ChallengeModeController {
         }
     }
 
+
     public void onMultiplicationClicked(ActionEvent actionEvent) {
         try {
             SceneManager.switchTo("/fxml/challenge_multiplication.fxml");
@@ -50,8 +53,10 @@ public class ChallengeModeController {
         }
     }
 
+
     public void onDivisionClicked(ActionEvent actionEvent) {
     }
+
 
     public void onBackClicked(ActionEvent actionEvent) {
         try {

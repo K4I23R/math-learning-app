@@ -1,22 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.*?>
+
 <?import javafx.scene.control.*?>
-<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
       fx:controller="pl.michalsnella.mathlearning.controller.challenges.MultiplicationChallengeController"
-      alignment="TOP_CENTER" spacing="10" style="-fx-padding: 20;">
+      spacing="10" alignment="TOP_CENTER">
 
-    <Label fx:id="titleLabel" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
 
-    <HBox spacing="5" fx:id="topDigitsBox" alignment="CENTER"/>
-    <HBox spacing="5" fx:id="bottomDigitsBox" alignment="CENTER"/>
+    <Label fx:id="titleLabel" style="-fx-font-size: 24px;" />
 
-    <VBox spacing="5" fx:id="resultsContainer" alignment="CENTER"/>
+    <VBox spacing="5" alignment="CENTER">
+        <HBox fx:id="topDigitsBox" spacing="3" />
+
+        <HBox>
+
+            <Label text="×" style="-fx-font-size: 18px;" />
+            <HBox fx:id="bottomDigitsBox" spacing="3" />
+
+        </HBox>
+    </VBox>
+
+    <VBox fx:id="resultsContainer" spacing="5" alignment="CENTER" />
 
     <HBox spacing="10" alignment="CENTER">
-        <Button fx:id="newOperationButton" onAction="#onNewClicked" text="Nowe działanie"/>
-        <Button fx:id="checkButton" onAction="#onCheckClicked" text="Sprawdź"/>
-        <Button fx:id="backButton" onAction="#onBackClicked" text="Wróć"/>
+
+        <Button fx:id="newOperationButton" onAction="#onNewClicked" />
+        <Button fx:id="checkButton" onAction="#onCheckClicked" />
+        <Button fx:id="backButton" onAction="#onBackClicked" />
+
     </HBox>
 </VBox>

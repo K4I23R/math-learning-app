@@ -22,19 +22,21 @@ public class MultiplicationChallengeController {
 
     private final List<DigitField> roughNoteFields = new ArrayList<>();
     private final List<List<DigitField>> partialResultsFields = new ArrayList<>();
+    private final List<Button> partialCheckButtons = new ArrayList<>();
     private final List<DigitField> finalSumFields = new ArrayList<>();
 
     private MultiplicationExercise currentExercise;
-    private int currentStep = 0;
 
     @FXML
     public void initialize() {
         titleLabel.setText(LanguageManager.getString("multiplication_challenge.title"));
         newOperationButton.setText(LanguageManager.getString("multiplication_challenge.new_operation"));
         checkButton.setText(LanguageManager.getString("multiplication_challenge.check"));
+        checkButton.setDisable(true);
         backButton.setText(LanguageManager.getString("multiplication_challenge.back"));
         generateNewExercise();
     }
+
 
     private void generateNewExercise() {
         currentExercise = new MultiplicationExercise(4);
@@ -48,9 +50,10 @@ public class MultiplicationChallengeController {
         resultsContainer.getChildren().clear();
         roughNoteFields.clear();
         partialResultsFields.clear();
+        partialCheckButtons.clear();
         finalSumFields.clear();
+        checkButton.setDisable(true);
 
-        // Top digits
         String topStr = String.format("%" + maxLength + "s", currentExercise.getTopNumber());
         for (char c : topStr.toCharArray()) {
             Label digit = new Label(String.valueOf(c));
@@ -59,7 +62,6 @@ public class MultiplicationChallengeController {
             topDigitsBox.getChildren().add(digit);
         }
 
-        // Bottom digits
         String bottomStr = String.format("%" + maxLength + "s", currentExercise.getBottomNumber());
         for (char c : bottomStr.toCharArray()) {
             Label digit = new Label(String.valueOf(c));
@@ -68,7 +70,6 @@ public class MultiplicationChallengeController {
             bottomDigitsBox.getChildren().add(digit);
         }
 
-        // Rough note row
         HBox roughRow = new HBox();
         for (int i = 0; i < maxLength; i++) {
             DigitField field = new DigitField();
@@ -78,54 +79,66 @@ public class MultiplicationChallengeController {
         }
         resultsContainer.getChildren().add(roughRow);
 
-        // Partial result rows
-        for (int i = 0; i < currentExercise.getPartialResults().size(); i++) {
-            HBox partialRow = new HBox();
-            List<DigitField> rowFields = new ArrayList<>();
+        List<String> expectedPartials = currentExercise.getPartialResults();
+        for (int i = 0; i < expectedPartials.size(); i++) {
+            HBox row = new HBox();
+            List<DigitField> fields = new ArrayList<>();
+
             for (int j = 0; j < maxLength; j++) {
                 DigitField field = new DigitField();
                 field.setPrefWidth(30);
-                rowFields.add(field);
-                partialRow.getChildren().add(field);
+                field.setDisable(i > 0);
+                fields.add(field);
+                row.getChildren().add(field);
             }
-            partialResultsFields.add(rowFields);
-            resultsContainer.getChildren().add(partialRow);
+
+            Button check = getButton(i);
+            row.getChildren().add(check);
+
+            partialResultsFields.add(fields);
+            partialCheckButtons.add(check);
+            resultsContainer.getChildren().add(row);
         }
 
-        // Final sum row
         HBox finalRow = new HBox();
         for (int i = 0; i < maxLength; i++) {
             DigitField field = new DigitField();
             field.setPrefWidth(30);
+            field.setDisable(true);
             finalSumFields.add(field);
             finalRow.getChildren().add(field);
         }
         resultsContainer.getChildren().add(finalRow);
-
-        // Aktywuj tryb krokowy
-        currentStep = 0;
-        updateStepMode();
     }
 
-    @FXML
-    private void onCheckClicked() {
-        if (currentStep < partialResultsFields.size()) {
-            checkPartialResultsStep();
-        } else {
-            checkFinalResult();
-        }
+
+    private Button getButton(int i) {
+        Button check = new Button(LanguageManager.getString("multiplication_challenge.check"));
+        final int index = i;
+        check.setOnAction(e -> {
+            if (checkPartialRow(index)) {
+                check.setDisable(true);
+                if (index + 1 < partialResultsFields.size()) {
+                    partialResultsFields.get(index + 1).forEach(f -> f.setDisable(false));
+                    partialCheckButtons.get(index + 1).setDisable(false);
+                } else {
+                    finalSumFields.forEach(f -> f.setDisable(false));
+                    checkButton.setDisable(false);
+                }
+            }
+        });
+        check.setDisable(i > 0);
+        return check;
     }
 
-    private void checkPartialResultsStep() {
+
+    private boolean checkPartialRow(int rowIndex) {
         List<String> expectedPartials = currentExercise.getPartialResults();
         int maxLength = finalSumFields.size();
 
-        if (currentStep >= expectedPartials.size()) return;
-
-        String expected = String.format("%" + maxLength + "s", expectedPartials.get(currentStep));
-        List<DigitField> userRow = partialResultsFields.get(currentStep);
-
-        boolean correct = true;
+        String expected = String.format("%" + maxLength + "s", expectedPartials.get(rowIndex));
+        List<DigitField> userRow = partialResultsFields.get(rowIndex);
+        boolean allCorrect = true;
 
         for (int col = 0; col < userRow.size(); col++) {
             DigitField field = userRow.get(col);
@@ -138,15 +151,19 @@ public class MultiplicationChallengeController {
                 field.setStyle("-fx-background-color: #b2ffb2;");
             } else {
                 field.setStyle("-fx-background-color: #ffb2b2;");
-                correct = false;
+                allCorrect = false;
             }
         }
 
-        if (correct) {
-            currentStep++;
-            updateStepMode();
-        }
+        return allCorrect;
     }
+
+
+    @FXML
+    private void onCheckClicked() {
+        checkFinalResult();
+    }
+
 
     private void checkFinalResult() {
         String correctResult = String.valueOf(currentExercise.getResult());
@@ -165,27 +182,12 @@ public class MultiplicationChallengeController {
         }
     }
 
-    private void updateStepMode() {
-        for (int i = 0; i < partialResultsFields.size(); i++) {
-            boolean editable = i == currentStep;
-            for (DigitField field : partialResultsFields.get(i)) {
-                field.setEditable(editable);
-                field.setDisable(!editable);
-            }
-        }
-
-        // Final result row aktywowany dopiero na końcu
-        boolean enableFinal = currentStep >= partialResultsFields.size();
-        for (DigitField field : finalSumFields) {
-            field.setEditable(enableFinal);
-            field.setDisable(!enableFinal);
-        }
-    }
 
     @FXML
     private void onNewClicked() {
         generateNewExercise();
     }
+
 
     @FXML
     private void onBackClicked() {

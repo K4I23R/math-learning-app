@@ -18,6 +18,7 @@
             <Button fx:id="lessonsButton" onAction="#onLessonsClicked" text="Lessons" />
             <Button fx:id="challengesButton" onAction="#onChallengesClicked" text="Challenges" />
             <Button fx:id="backButton" onAction="#onBackClicked" text="Back" />
+
         </children>
     </VBox>
 

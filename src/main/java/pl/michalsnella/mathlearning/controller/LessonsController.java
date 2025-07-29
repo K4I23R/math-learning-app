@@ -22,6 +22,7 @@ public class LessonsController {
         titleLabel.setText(LanguageManager.getString("lessons.title"));
     }
 
+
     public void onBackClicked(ActionEvent actionEvent) {
         try {
             SceneManager.switchTo("/fxml/start.fxml");

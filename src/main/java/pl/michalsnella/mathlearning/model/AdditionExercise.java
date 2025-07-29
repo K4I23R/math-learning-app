@@ -28,23 +28,28 @@ public class AdditionExercise {
         result = topNumber + bottomNumber;
     }
 
+
     private int generateRandomNDigitNumber(Random random, int digits) {
         int min = (int) Math.pow(10, digits - 1);
         int max = (int) Math.pow(10, digits) - 1;
         return random.nextInt(max - min + 1) + min;
     }
 
+
     public int getTopNumber() {
         return topNumber;
     }
+
 
     public int getBottomNumber() {
         return bottomNumber;
     }
 
+
     public int getResult() {
         return result;
     }
+
 
     public String getResultAsString() {
         return String.valueOf(result);

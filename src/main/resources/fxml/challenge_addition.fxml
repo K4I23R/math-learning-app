@@ -17,16 +17,23 @@
 
         <HBox fx:id="regroupingDigitContainer" spacing="5" alignment="CENTER"/>
         <HBox fx:id="topDigitsBox" spacing="5" alignment="CENTER"/>
+
         <HBox spacing="5" alignment="CENTER">
+
             <Label text="+" />
             <HBox fx:id="bottomDigitsBox" spacing="5" alignment="CENTER"/>
+
         </HBox>
+
         <HBox fx:id="digitContainer" spacing="5" alignment="CENTER"/>
 
         <HBox spacing="10" alignment="CENTER">
+
             <Button fx:id="newOperationButton" onAction="#onNewClicked" text="Nowe działanie" />
             <Button fx:id="checkButton" onAction="#onCheckClicked" text="Sprawdź" />
             <Button fx:id="backButton" onAction="#onBackClicked" text="Wróć" />
+
         </HBox>
+
     </VBox>
 </AnchorPane>
