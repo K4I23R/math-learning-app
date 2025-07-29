@@ -37,9 +37,9 @@ public class SubtractionChallengeController {
 
 
     private void generateNewExercise() {
-        currentExercise = new SubtractionExercise(3);
+        currentExercise = new SubtractionExercise(4);
 
-        int maxLength = String.valueOf(currentExercise.getResult()).length();
+        int maxLength = String.valueOf(currentExercise.getTopNumber()).length();
 
         regroupingDigitFields.clear();
         digitFields.clear();

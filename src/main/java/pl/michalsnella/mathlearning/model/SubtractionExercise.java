@@ -24,19 +24,21 @@ public class SubtractionExercise {
         }
 
         int top = generateRandomNDigitNumber(random, topDigits);
-        int bottom = generateRandomNDigitNumber(random, bottomDigits);
+        int minBottom = (int) Math.pow(10, bottomDigits - 1);
+        int maxBottom = Math.min(top - 1, (int) Math.pow(10, bottomDigits) - 1);
 
-        if (bottom > top) {
-            // Zamiana miejscami aby wynik był dodatni
-            int temp = top;
-            top = bottom;
-            bottom = temp;
+        if (maxBottom < minBottom) {
+            top = (int) Math.pow(10, bottomDigits);
+            maxBottom = top - 1;
         }
+
+        int bottom = random.nextInt(maxBottom - minBottom + 1) + minBottom;
 
         this.topNumber = top;
         this.bottomNumber = bottom;
-        this.result = topNumber - bottomNumber;
+        this.result = top - bottom;
     }
+
 
     private int generateRandomNDigitNumber(Random random, int digits) {
         int min = (int) Math.pow(10, digits - 1);
@@ -44,17 +46,21 @@ public class SubtractionExercise {
         return random.nextInt(max - min + 1) + min;
     }
 
+
     public int getTopNumber() {
         return topNumber;
     }
+
 
     public int getBottomNumber() {
         return bottomNumber;
     }
 
+
     public int getResult() {
         return result;
     }
+
 
     public String getResultAsString() {
         return String.valueOf(result);
