@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
@@ -16,13 +16,11 @@
     <Label fx:id="titleLabel" style="-fx-font-size: 20px;"/>
 
     <HBox spacing="5" alignment="CENTER_RIGHT">
-
         <VBox spacing="2" alignment="CENTER_RIGHT">
-
             <HBox fx:id="topAnswerBox" spacing="5" alignment="CENTER_RIGHT"/>
 
             <VBox spacing="2" alignment="BOTTOM_RIGHT">
-                <Separator fx:id="divisionLine" orientation="HORIZONTAL"/>
+                <Separator fx:id="divisionLine" orientation="HORIZONTAL" prefWidth="200"/>
                 <HBox fx:id="dividendBox" spacing="0" alignment="CENTER_LEFT"/>
             </VBox>
         </VBox>
@@ -33,13 +31,13 @@
                 <HBox fx:id="divisorBox" spacing="0" alignment="CENTER_LEFT"/>
             </HBox>
         </VBox>
-
     </HBox>
+
+    <!-- Kontener na etapy dzielenia, uzupełniany dynamicznie -->
+    <VBox fx:id="stepsContainer" spacing="10" alignment="TOP_LEFT"/>
 
     <HBox spacing="10" alignment="CENTER">
         <Button fx:id="newOperationButton" onAction="#onNewClicked"/>
-        <Button fx:id="checkButton" onAction="#onCheckClicked"/>
         <Button fx:id="backButton" onAction="#onBackClicked"/>
     </HBox>
-
 </VBox>
