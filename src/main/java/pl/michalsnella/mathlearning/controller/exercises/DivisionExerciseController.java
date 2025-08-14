@@ -1,4 +1,4 @@
-package pl.michalsnella.mathlearning.controller.challenges;
+package pl.michalsnella.mathlearning.controller.exercises;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -17,7 +17,7 @@ import pl.michalsnella.mathlearning.util.SceneManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DivisionChallengeController {
+public class DivisionExerciseController {
 
     @FXML private Label titleLabel;
     @FXML private HBox topAnswerBox;
@@ -37,9 +37,9 @@ public class DivisionChallengeController {
 
     @FXML
     public void initialize() {
-        titleLabel.setText(LanguageManager.getString("division_challenge.title"));
-        newOperationButton.setText(LanguageManager.getString("division_challenge.new_operation"));
-        backButton.setText(LanguageManager.getString("division_challenge.back"));
+        titleLabel.setText(LanguageManager.getString("division_exercise.title"));
+        newOperationButton.setText(LanguageManager.getString("division_exercise.new_operation"));
+        backButton.setText(LanguageManager.getString("division_exercise.back"));
         generateNewExercise();
     }
 
@@ -99,7 +99,7 @@ public class DivisionChallengeController {
             VBox stepBox = new VBox(2);
             HBox multipleBox = new HBox(2);
             HBox subtractionBox = new HBox(2);
-            Button checkStepButton = new Button(LanguageManager.getString("division_challenge.check_step"));
+            Button checkStepButton = new Button(LanguageManager.getString("division_exercise.check_step"));
             checkStepButton.setDisable(stepIndex != 0);
             checkStepButtons.add(checkStepButton);
             int finalStepIndex = stepIndex;

@@ -9,7 +9,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="pl.michalsnella.mathlearning.controller.challenges.AdditionChallengeController">
+            fx:controller="pl.michalsnella.mathlearning.controller.exercises.AdditionExerciseController">
 
     <VBox layoutX="50" layoutY="30" spacing="10" alignment="CENTER">
 

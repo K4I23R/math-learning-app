@@ -1,11 +1,10 @@
-package pl.michalsnella.mathlearning.controller.challenges;
+package pl.michalsnella.mathlearning.controller.exercises;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import pl.michalsnella.mathlearning.component.DigitField;
-import pl.michalsnella.mathlearning.config.Settings;
 import pl.michalsnella.mathlearning.model.AdditionExercise;
 import pl.michalsnella.mathlearning.util.LanguageManager;
 import pl.michalsnella.mathlearning.util.SceneManager;
@@ -13,7 +12,7 @@ import pl.michalsnella.mathlearning.util.SceneManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdditionChallengeController {
+public class AdditionExerciseController {
 
     @FXML private Label titleLabel;
     @FXML private Button newOperationButton, checkButton, backButton;
@@ -25,10 +24,10 @@ public class AdditionChallengeController {
 
     @FXML
     public void initialize() {
-        titleLabel.setText(LanguageManager.getString("addition_challenge.title"));
-        newOperationButton.setText(LanguageManager.getString("addition_challenge.new_operation"));
-        checkButton.setText(LanguageManager.getString("addition_challenge.check"));
-        backButton.setText(LanguageManager.getString("addition_challenge.back"));
+        titleLabel.setText(LanguageManager.getString("addition_exercise.title"));
+        newOperationButton.setText(LanguageManager.getString("addition_exercise.new_operation"));
+        checkButton.setText(LanguageManager.getString("addition_exercise.check"));
+        backButton.setText(LanguageManager.getString("addition_exercise.back"));
         generateNewExercise();
     }
 

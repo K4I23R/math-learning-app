@@ -6,7 +6,7 @@
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="pl.michalsnella.mathlearning.controller.challenges.DivisionChallengeController"
+      fx:controller="pl.michalsnella.mathlearning.controller.exercises.DivisionExerciseController"
       spacing="10" alignment="CENTER">
 
     <padding>

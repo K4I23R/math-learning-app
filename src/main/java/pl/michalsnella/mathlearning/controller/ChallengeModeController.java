@@ -29,7 +29,7 @@ public class ChallengeModeController {
 
     public void onAdditionClicked(ActionEvent actionEvent) {
         try {
-            SceneManager.switchTo("/fxml/challenge_addition.fxml");
+            SceneManager.switchTo("/fxml/exercise_addition.fxml");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -38,7 +38,7 @@ public class ChallengeModeController {
 
     public void onSubtractionClicked(ActionEvent actionEvent) {
         try {
-            SceneManager.switchTo("/fxml/challenge_subtraction.fxml");
+            SceneManager.switchTo("/fxml/exercise_subtraction.fxml");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,7 +47,7 @@ public class ChallengeModeController {
 
     public void onMultiplicationClicked(ActionEvent actionEvent) {
         try {
-            SceneManager.switchTo("/fxml/challenge_multiplication.fxml");
+            SceneManager.switchTo("/fxml/exercise_multiplication.fxml");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -56,7 +56,7 @@ public class ChallengeModeController {
 
     public void onDivisionClicked(ActionEvent actionEvent) {
         try {
-            SceneManager.switchTo("/fxml/challenge_division.fxml");
+            SceneManager.switchTo("/fxml/exercise_division.fxml");
         } catch (Exception e) {
             e.printStackTrace();
         }

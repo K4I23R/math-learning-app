@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="pl.michalsnella.mathlearning.controller.challenges.SubtractionChallengeController"
+            fx:controller="pl.michalsnella.mathlearning.controller.exercises.SubtractionExerciseController"
             prefWidth="600" prefHeight="400">
     <VBox layoutX="50" layoutY="30" spacing="10" alignment="CENTER">
 

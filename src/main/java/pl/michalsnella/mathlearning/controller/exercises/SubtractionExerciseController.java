@@ -1,4 +1,4 @@
-package pl.michalsnella.mathlearning.controller.challenges;
+package pl.michalsnella.mathlearning.controller.exercises;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,7 +11,7 @@ import pl.michalsnella.mathlearning.util.SceneManager;
 
 import java.util.*;
 
-public class SubtractionChallengeController {
+public class SubtractionExerciseController {
 
     @FXML private Label titleLabel, messageLabel;
     @FXML private Button newOperationButton, checkButton, backButton;
@@ -28,10 +28,10 @@ public class SubtractionChallengeController {
 
     @FXML
     public void initialize() {
-        titleLabel.setText(LanguageManager.getString("subtraction_challenge.title"));
-        newOperationButton.setText(LanguageManager.getString("subtraction_challenge.new_operation"));
-        checkButton.setText(LanguageManager.getString("subtraction_challenge.check"));
-        backButton.setText(LanguageManager.getString("subtraction_challenge.back"));
+        titleLabel.setText(LanguageManager.getString("subtraction_exercise.title"));
+        newOperationButton.setText(LanguageManager.getString("subtraction_exercise.new_operation"));
+        checkButton.setText(LanguageManager.getString("subtraction_exercise.check"));
+        backButton.setText(LanguageManager.getString("subtraction_exercise.back"));
         generateNewExercise();
     }
 
@@ -98,7 +98,7 @@ public class SubtractionChallengeController {
 
         if (borrowedIndices.contains(index - 1)) {
             if (toVal - 10 < 0) {
-                showMessage(LanguageManager.getString("subtraction_challenge.message1"));
+                showMessage(LanguageManager.getString("subtraction_exercise.message1"));
                 return;
             }
             to.setText(String.valueOf(toVal - 10));
@@ -110,7 +110,7 @@ public class SubtractionChallengeController {
         }
 
         if (toVal >= bottomVal) {
-            showMessage(LanguageManager.getString("subtraction_challenge.message2"));
+            showMessage(LanguageManager.getString("subtraction_exercise.message2"));
             return;
         }
 
@@ -126,10 +126,10 @@ public class SubtractionChallengeController {
                 to.setStyle("-fx-background-color: lightblue; -fx-font-size: 16px;");
                 borrowedIndices.add(index - 1);
             } else {
-                showMessage(LanguageManager.getString("subtraction_challenge.message3"));
+                showMessage(LanguageManager.getString("subtraction_exercise.message3"));
             }
         } else {
-            showMessage(LanguageManager.getString("subtraction_challenge.message3"));
+            showMessage(LanguageManager.getString("subtraction_exercise.message3"));
         }
     }
 

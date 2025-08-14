@@ -1,4 +1,4 @@
-package pl.michalsnella.mathlearning.controller.challenges;
+package pl.michalsnella.mathlearning.controller.exercises;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,7 +13,7 @@ import pl.michalsnella.mathlearning.util.SceneManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MultiplicationChallengeController {
+public class MultiplicationExerciseController {
 
     @FXML private Label titleLabel;
     @FXML private Button newOperationButton, checkButton, backButton;
@@ -29,11 +29,11 @@ public class MultiplicationChallengeController {
 
     @FXML
     public void initialize() {
-        titleLabel.setText(LanguageManager.getString("multiplication_challenge.title"));
-        newOperationButton.setText(LanguageManager.getString("multiplication_challenge.new_operation"));
-        checkButton.setText(LanguageManager.getString("multiplication_challenge.check"));
+        titleLabel.setText(LanguageManager.getString("multiplication_exercise.title"));
+        newOperationButton.setText(LanguageManager.getString("multiplication_exercise.new_operation"));
+        checkButton.setText(LanguageManager.getString("multiplication_exercise.check"));
         checkButton.setDisable(true);
-        backButton.setText(LanguageManager.getString("multiplication_challenge.back"));
+        backButton.setText(LanguageManager.getString("multiplication_exercise.back"));
         generateNewExercise();
     }
 
@@ -113,7 +113,7 @@ public class MultiplicationChallengeController {
 
 
     private Button getButton(int i) {
-        Button check = new Button(LanguageManager.getString("multiplication_challenge.check"));
+        Button check = new Button(LanguageManager.getString("multiplication_exercise.check"));
         final int index = i;
         check.setOnAction(e -> {
             if (checkPartialRow(index)) {
