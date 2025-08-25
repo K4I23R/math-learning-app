@@ -1,13 +1,13 @@
-package pl.michalsnella.mathlearning.model;
+package pl.michalsnella.mathlearning.model.exercise;
 
 import java.util.Random;
 
-public class SubtractionExercise {
+public class AdditionExercise {
     private final int topNumber;
     private final int bottomNumber;
     private final int result;
 
-    public SubtractionExercise(int difficultyLevel) {
+    public AdditionExercise(int difficultyLevel) {
         Random random = new Random();
 
         int topDigits, bottomDigits;
@@ -23,20 +23,9 @@ public class SubtractionExercise {
             default -> { topDigits = 3; bottomDigits = 1; }
         }
 
-        int top = generateRandomNDigitNumber(random, topDigits);
-        int minBottom = (int) Math.pow(10, bottomDigits - 1);
-        int maxBottom = Math.min(top - 1, (int) Math.pow(10, bottomDigits) - 1);
-
-        if (maxBottom < minBottom) {
-            top = (int) Math.pow(10, bottomDigits);
-            maxBottom = top - 1;
-        }
-
-        int bottom = random.nextInt(maxBottom - minBottom + 1) + minBottom;
-
-        this.topNumber = top;
-        this.bottomNumber = bottom;
-        this.result = top - bottom;
+        topNumber = generateRandomNDigitNumber(random, topDigits);
+        bottomNumber = generateRandomNDigitNumber(random, bottomDigits);
+        result = topNumber + bottomNumber;
     }
 
 

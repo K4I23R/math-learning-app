@@ -1,0 +1,19 @@
+{
+  "id": "5e2c4f0a-9a2f-4a2f-8f0a-1c2d3e4f5a6b",
+  "name": "Zosia",
+  "age": 11,
+  "avatar": "PANDA",
+  "points": 120,
+  "stats": {
+    "global": { "tasksTotal": 30, "tasksCorrect": 28, "tasksPerfect": 15, "timeMs": 540000 },
+    "byOperation": {
+      "ADDITION":       { "tasksTotal": 10, "tasksCorrect": 10, "tasksPerfect": 7, "timeMs": 150000 },
+      "SUBTRACTION":    { "tasksTotal": 6,  "tasksCorrect": 5,  "tasksPerfect": 2, "timeMs": 90000  },
+      "MULTIPLICATION": { "tasksTotal": 8,  "tasksCorrect": 8,  "tasksPerfect": 4, "timeMs": 180000 },
+      "DIVISION":       { "tasksTotal": 6,  "tasksCorrect": 5,  "tasksPerfect": 2, "timeMs": 120000 }
+    }
+  },
+  "achievements": ["PRACTICE_10_TASKS_ANY", "LEARN_MULTIPLICATION_DONE"],
+  "createdAt": "2025-08-12T10:15:30Z",
+  "lastSeenAt": "2025-08-17T18:45:10Z"
+}

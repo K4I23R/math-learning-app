@@ -1,4 +1,4 @@
-package pl.michalsnella.mathlearning.model;
+package pl.michalsnella.mathlearning.model.exercise;
 
 import java.util.ArrayList;
 import java.util.List;

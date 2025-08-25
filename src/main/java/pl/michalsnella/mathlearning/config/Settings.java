@@ -16,8 +16,6 @@ public class Settings {
     }
 
 
-    //getters and setters
-
     public String getLanguage() {
         return language;
     }

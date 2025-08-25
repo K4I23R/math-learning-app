@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pl.michalsnella.mathlearning.controller.NewProfileDialogController"
+      spacing="10" prefWidth="420">
+
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <Label text="Nowy profil" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <GridPane hgap="10" vgap="10">
+        <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" minWidth="120"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+
+        <Label text="Imię:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="nameField" promptText="np. Antek"
+                   GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Wiek:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="ageField" promptText="np. 9"
+                   GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Avatar:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="avatarBox" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <HBox spacing="10">
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Anuluj" onAction="#onCancel"/>
+        <Button text="Utwórz" onAction="#onCreate"/>
+    </HBox>
+</VBox>

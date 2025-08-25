@@ -4,8 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import pl.michalsnella.mathlearning.util.LanguageManager;
-import pl.michalsnella.mathlearning.util.SceneManager;
+import pl.michalsnella.mathlearning.utils.LanguageManager;
+import pl.michalsnella.mathlearning.utils.SceneManager;
 
 public class ChallengeModeController {
 

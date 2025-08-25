@@ -1,7 +1,6 @@
-package pl.michalsnella.mathlearning.model;
+package pl.michalsnella.mathlearning.model.exercise;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 

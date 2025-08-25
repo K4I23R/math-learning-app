@@ -9,10 +9,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import pl.michalsnella.mathlearning.component.DigitField;
-import pl.michalsnella.mathlearning.model.DivisionExercise;
-import pl.michalsnella.mathlearning.model.DivisionStep;
-import pl.michalsnella.mathlearning.util.LanguageManager;
-import pl.michalsnella.mathlearning.util.SceneManager;
+import pl.michalsnella.mathlearning.model.exercise.DivisionExercise;
+import pl.michalsnella.mathlearning.model.exercise.DivisionStep;
+import pl.michalsnella.mathlearning.utils.LanguageManager;
+import pl.michalsnella.mathlearning.utils.SceneManager;
 
 import java.util.ArrayList;
 import java.util.List;

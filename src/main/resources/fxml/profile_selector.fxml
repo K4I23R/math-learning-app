@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pl.michalsnella.mathlearning.controller.ProfileSelectorController"
+            prefWidth="720" prefHeight="480">
+
+    <top>
+        <Label text="Wybierz profil"
+               style="-fx-font-size: 22px; -fx-font-weight: bold;"
+               BorderPane.alignment="CENTER" />
+    </top>
+
+    <center>
+        <SplitPane dividerPositions="0.6">
+            <items>
+
+                <!-- LEWA KOLUMNA -->
+                <VBox spacing="10">
+                    <padding>
+                        <Insets top="15" right="15" bottom="15" left="15"/>
+                    </padding>
+
+                    <Label text="Dostępne profile:" style="-fx-font-size: 14px;" />
+                    <ListView fx:id="profilesList" prefHeight="350" />
+                    <HBox spacing="10">
+                        <Button fx:id="selectButton" text="Zaloguj" onAction="#onSelect"/>
+                        <Button fx:id="deleteButton" text="Usuń" onAction="#onDelete"/>
+                        <Button fx:id="refreshButton" text="Odśwież" onAction="#onRefresh"/>
+                    </HBox>
+                </VBox>
+
+                <!-- PRAWA KOLUMNA -->
+                <VBox spacing="10">
+                    <padding>
+                        <Insets top="15" right="15" bottom="15" left="15"/>
+                    </padding>
+
+                    <Label text="Podgląd" style="-fx-font-size: 14px;"/>
+                    <ImageView fx:id="avatarPreview" fitWidth="160" fitHeight="160" preserveRatio="true"
+                               style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10,0,0,0)"/>
+                    <Label fx:id="profileName" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                    <Label fx:id="profileDetails" />
+                    <Region VBox.vgrow="ALWAYS"/>
+                    <Separator/>
+                    <Button fx:id="createButton" text="Utwórz nowy profil" onAction="#onCreateNew"/>
+                </VBox>
+
+            </items>
+        </SplitPane>
+    </center>
+
+    <bottom>
+        <Label text="Math Learning App"
+               style="-fx-text-fill: #888; -fx-padding: 6 12 6 12;"/>
+    </bottom>
+</BorderPane>

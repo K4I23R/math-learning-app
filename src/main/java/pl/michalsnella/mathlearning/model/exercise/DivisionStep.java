@@ -1,4 +1,4 @@
-package pl.michalsnella.mathlearning.model;
+package pl.michalsnella.mathlearning.model.exercise;
 
 public class DivisionStep {
     protected final int segmentStartIndex;

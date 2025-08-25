@@ -1,0 +1,44 @@
+{
+  "id" : "44b6c8f8-7b41-4f7d-bc3c-2c9b8a11aa10",
+  "name" : "Antek",
+  "age" : 9,
+  "avatar" : "FOX",
+  "points" : 25,
+  "stats" : {
+    "global" : {
+      "tasksTotal" : 12,
+      "tasksCorrect" : 10,
+      "tasksPerfect" : 6,
+      "timeMs" : 180000
+    },
+    "byOperation" : {
+      "ADDITION" : {
+        "tasksTotal" : 5,
+        "tasksCorrect" : 4,
+        "tasksPerfect" : 3,
+        "timeMs" : 60000
+      },
+      "SUBTRACTION" : {
+        "tasksTotal" : 3,
+        "tasksCorrect" : 3,
+        "tasksPerfect" : 2,
+        "timeMs" : 45000
+      },
+      "MULTIPLICATION" : {
+        "tasksTotal" : 2,
+        "tasksCorrect" : 2,
+        "tasksPerfect" : 1,
+        "timeMs" : 30000
+      },
+      "DIVISION" : {
+        "tasksTotal" : 2,
+        "tasksCorrect" : 1,
+        "tasksPerfect" : 0,
+        "timeMs" : 45000
+      }
+    }
+  },
+  "achievements" : [ "LEARN_ADDITION_DONE" ],
+  "createdAt" : "2025-08-10T09:00:00Z",
+  "lastSeenAt" : "2025-08-25T14:06:37.434279Z"
+}

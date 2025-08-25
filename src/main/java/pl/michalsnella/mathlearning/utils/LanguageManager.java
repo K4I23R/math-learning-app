@@ -1,4 +1,4 @@
-package pl.michalsnella.mathlearning.util;
+package pl.michalsnella.mathlearning.utils;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

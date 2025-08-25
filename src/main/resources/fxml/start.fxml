@@ -16,6 +16,7 @@
 
             <Label fx:id="titleLabel" text="Start" />
             <Button fx:id="lessonsButton" onAction="#onLessonsClicked" text="Lessons" />
+            <Button fx:id="exercisesButton" onAction="#onExercisesClicked" text="Exercises" />
             <Button fx:id="challengesButton" onAction="#onChallengesClicked" text="Challenges" />
             <Button fx:id="backButton" onAction="#onBackClicked" text="Back" />
 
